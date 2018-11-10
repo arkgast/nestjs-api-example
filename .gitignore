@@ -1,0 +1,6 @@
+# Dirs
+/node_modules/
+/dist/
+
+# Files
+*.log
