@@ -3,21 +3,34 @@
   "version": "1.0.0",
   "description": "Luka API",
   "author": "Arnold Gandarillas Castillo",
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "dist/main.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf lib && tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "start:prod": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
-    "prestart:prod": "rimraf dist && tsc",
-    "start:prod": "node dist/main.js",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "prestart": "npm run build",
+    "start": "node dist/main.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkgast/nestjs-api-example.git"
+  },
+  "keywords": ["Google Cloud", "AppEngine", "API", "Nest Framework"],
+  "bugs": {
+    "url": "https://github.com/arkgast/nestjs-api-example/issues"
+  },
+  "homepage": "https://github.com/arkgast/nestjs-api-example#readme",
   "dependencies": {
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
