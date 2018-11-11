@@ -14,10 +14,10 @@
     "baseUrl": "./"
   },
   "include": [
-    "src/**/*",
-    "test/**/*"
+    "src/**/*"
   ],
   "exclude": [
+    "test/**/*",
     "node_modules"
   ]
 }
