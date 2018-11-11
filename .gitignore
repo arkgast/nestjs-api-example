@@ -4,3 +4,6 @@
 
 # Files
 *.log
+
+# Critical
+src/ServiceAccountKey.json
