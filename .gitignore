@@ -6,4 +6,4 @@
 *.log
 
 # Critical
-src/ServiceAccountKey.json
+src/firestore/ServiceAccountKey.json

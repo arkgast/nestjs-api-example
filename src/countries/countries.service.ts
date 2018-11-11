@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { FirestoreService } from '../firestore.service'
+import { FirestoreService } from '../firestore/firestore.service'
 import { Country } from './interfaces/country.interface'
 
 @Injectable()
