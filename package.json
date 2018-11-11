@@ -26,7 +26,12 @@
     "type": "git",
     "url": "git+https://github.com/arkgast/nestjs-api-example.git"
   },
-  "keywords": ["Google Cloud", "AppEngine", "API", "Nest Framework"],
+  "keywords": [
+    "Google Cloud",
+    "AppEngine",
+    "API",
+    "Nest Framework"
+  ],
   "bugs": {
     "url": "https://github.com/arkgast/nestjs-api-example/issues"
   },
@@ -34,6 +39,7 @@
   "dependencies": {
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
+    "firebase-admin": "^6.1.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
