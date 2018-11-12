@@ -17,9 +17,15 @@ export class FirestoreService {
     this.db.settings(settings)
   }
 
-  async find (collection: string): Promise<any []> {
+  async find (collection: string, filters?: Array<{field: string, operator: string, value: string}>): Promise<any []> {
     const objects = []
-    const snapshot = await this.db.collection(collection).get()
+    let query = this.db.collection(collection)
+
+    filters.forEach(filter => {
+      query = query.where(filter.field, filter.operator, filter.value)
+    })
+
+    const snapshot = await query.get()
     snapshot.forEach(doc => {
       objects.push({
         id: doc.id,
