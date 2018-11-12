@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import * as admin from 'firebase-admin'
 
+import { Firestore } from './interfaces/firestore.interface'
 const serviceAccount = require('./ServiceAccountKey.json')
 
 admin.initializeApp({
@@ -17,7 +18,7 @@ export class FirestoreService {
     this.db.settings(settings)
   }
 
-  async find (collection: string, filters?: Array<{field: string, operator: string, value: string}>): Promise<any []> {
+  async find (collection: string, filters: Firestore[] = []): Promise<any []> {
     const objects = []
     let query = this.db.collection(collection)
 
