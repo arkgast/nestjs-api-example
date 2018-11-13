@@ -1,17 +1,20 @@
 import { Controller, Get, Res, Param, Query, HttpStatus } from '@nestjs/common'
+import { ApiUseTags } from '@nestjs/swagger'
 
 import { Company } from './interfaces/company.interface'
 import { CompaniesService } from './companies.service'
+import { QueryCountry } from './dto/query-country.dto'
 
+@ApiUseTags('Company')
 @Controller('companies')
 export class CompaniesController {
   constructor (private readonly service: CompaniesService) {}
 
   @Get()
-  async findAll (@Query('country') country, @Res() res) {
+  async findAll (@Query() query: QueryCountry, @Res() res) {
     let companies: Company []
-    if (country) {
-      companies = await this.service.findAllByCountry(country)
+    if (query.country) {
+      companies = await this.service.findAllByCountry(query.country)
     } else {
       companies = await this.service.findAll()
     }

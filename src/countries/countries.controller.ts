@@ -1,7 +1,10 @@
 import { Controller, Get, Res, Param, HttpStatus } from '@nestjs/common'
+import { ApiUseTags } from '@nestjs/swagger'
+
 import { CountriesService } from './countries.service'
 import { Country } from './interfaces/country.interface'
 
+@ApiUseTags('Country')
 @Controller('countries')
 export class CountriesController {
   constructor (private readonly service: CountriesService) {}
