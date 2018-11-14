@@ -43,4 +43,16 @@ export class FirestoreService {
       ...doc.data()
     }
   }
+
+  async findOneByToken (collection: string, token: string): Promise<object> {
+    let user = {}
+    const snapshot = await this.db.collection(collection).where('token', '==', token).get()
+    snapshot.forEach(doc => {
+      user = {
+        id: doc.id,
+        ...doc.data()
+      }
+    })
+    return user
+  }
 }
