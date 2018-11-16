@@ -1,8 +1,9 @@
-import { Controller, Get, Res, Param, HttpStatus } from '@nestjs/common'
+import { Controller, Get, Post, Res, Param, Body, HttpStatus } from '@nestjs/common'
 import { ApiUseTags } from '@nestjs/swagger'
 
 import { CountriesService } from './countries.service'
-import { Country } from './interfaces/country.interface'
+import { CreateCountryDto } from './dto/create-country.dto'
+import { ValidationPipe } from '../validation.pipe'
 
 @ApiUseTags('Country')
 @Controller('countries')
@@ -19,5 +20,10 @@ export class CountriesController {
   async findOne (@Res() res, @Param('id') id) {
     const country = await this.service.findOne(id)
     res.status(HttpStatus.OK).send(country)
+  }
+
+  @Post()
+  async create (@Body(new ValidationPipe()) createCountryDto: CreateCountryDto) {
+    return this.service.create(createCountryDto)
   }
 }

@@ -14,4 +14,8 @@ export class CountriesService {
   async findOne (id: string): Promise<object> {
     return this.db.findOne('country', id)
   }
+
+  async create (document: any) {
+    return this.db.create('country', document)
+  }
 }
