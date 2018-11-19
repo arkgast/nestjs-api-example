@@ -7,6 +7,6 @@ export class AuthService {
   constructor (@Inject('FirestoreService') private readonly service: UsersService) {}
 
   async validateUser (token: string): Promise<any> {
-    return this.service.findOneByToken(token)
+    return {}
   }
 }
