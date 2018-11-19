@@ -3,7 +3,6 @@ import { ApiUseTags } from '@nestjs/swagger'
 
 import { CountriesService } from './countries.service'
 import { CreateCountryDto } from './dto/create-country.dto'
-import { ValidationPipe } from '../validation.pipe'
 
 @ApiUseTags('Country')
 @Controller('countries')
@@ -23,7 +22,7 @@ export class CountriesController {
   }
 
   @Post()
-  async create (@Body(new ValidationPipe()) createCountryDto: CreateCountryDto) {
+  async create (@Body() createCountryDto: CreateCountryDto) {
     return this.service.create(createCountryDto)
   }
 }

@@ -14,7 +14,15 @@ export class UsersService {
     return this.db.findOne('user', id)
   }
 
-  async findOneByToken (token: string) {
-    return this.db.findOneByToken('user', token)
+  async create (document: any) {
+    return this.db.create('user', document)
+  }
+
+  async update (id: string, document: any) {
+    return this.db.update('user', id, document)
+  }
+
+  async delete (id: string) {
+    return this.db.delete('user', id)
   }
 }

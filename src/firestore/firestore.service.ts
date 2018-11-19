@@ -51,4 +51,14 @@ export class FirestoreService {
       ...document
     }
   }
+
+  async update (collection: string, id: string, document: any) {
+    await this.db.collection(collection).doc(id).update(document)
+    return { id, ...document }
+  }
+
+  async delete (collection: string, id: string) {
+    await this.db.collection(collection).doc(id).delete()
+    return id
+  }
 }
