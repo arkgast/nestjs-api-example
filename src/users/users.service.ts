@@ -1,28 +1,30 @@
 import { Injectable } from '@nestjs/common'
 
-import { FirestoreService } from '../firestore/firestore.service'
+import { DatastoreService } from '../datastore/datastore.service'
+
+const KIND_NAME = 'Person'
 
 @Injectable()
 export class UsersService {
-  constructor (private readonly db: FirestoreService) {}
+  constructor (private readonly db: DatastoreService) {}
 
   async findAll () {
-    return this.db.find('user')
+    return this.db.find(KIND_NAME)
   }
 
   async findOne (id: string) {
-    return this.db.findOne('user', id)
+    return this.db.findOne(KIND_NAME, id)
   }
 
-  async create (document: any) {
-    return this.db.create('user', document)
+  async create (entity: any) {
+    return this.db.create(KIND_NAME, entity)
   }
 
-  async update (id: string, document: any) {
-    return this.db.update('user', id, document)
+  async update (id: string, entity: any) {
+    return this.db.update(KIND_NAME, id, entity)
   }
 
   async delete (id: string) {
-    return this.db.delete('user', id)
+    return this.db.delete(KIND_NAME, id)
   }
 }
