@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 
 import { CountriesController } from './countries.controller'
 import { CountriesService } from './countries.service'
-import { FirestoreService } from '../firestore/firestore.service'
+import { DatastoreService } from '../datastore/datastore.service'
 
 describe('Countries Controller', () => {
   let module: TestingModule
@@ -10,7 +10,7 @@ describe('Countries Controller', () => {
   beforeAll(async () => {
     module = await Test.createTestingModule({
       controllers: [CountriesController],
-      providers: [FirestoreService, CountriesService]
+      providers: [DatastoreService, CountriesService]
     }).compile()
   })
 

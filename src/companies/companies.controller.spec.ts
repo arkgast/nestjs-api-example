@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 
 import { CompaniesController } from './companies.controller'
 import { CompaniesService } from './companies.service'
-import { FirestoreService } from '../firestore/firestore.service'
+import { DatastoreService } from '../datastore/datastore.service'
 
 describe('Companies Controller', () => {
   let module: TestingModule
@@ -10,7 +10,7 @@ describe('Companies Controller', () => {
   beforeAll(async () => {
     module = await Test.createTestingModule({
       controllers: [CompaniesController],
-      providers: [FirestoreService, CompaniesService]
+      providers: [DatastoreService, CompaniesService]
     }).compile()
   })
   it('should be defined', () => {

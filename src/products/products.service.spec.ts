@@ -1,22 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing'
 
 import { ProductsService } from './products.service'
-import { FirestoreService } from '../firestore/firestore.service'
+import { DatastoreService } from '../datastore/datastore.service'
 
 describe('ProductsService', () => {
   let productsService: ProductsService
-  let firestoreService: FirestoreService
+  let datastoreService: DatastoreService
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [FirestoreService, ProductsService]
+      providers: [DatastoreService, ProductsService]
     }).compile()
     productsService = module.get<ProductsService>(ProductsService)
-    firestoreService = module.get<FirestoreService>(FirestoreService)
+    datastoreService = module.get<DatastoreService>(DatastoreService)
   })
   it('should be defined', () => {
     expect(productsService).toBeDefined()
-    expect(firestoreService).toBeDefined()
+    expect(datastoreService).toBeDefined()
   })
   it('should findAll', async () => {
     const result = [
@@ -28,7 +28,7 @@ describe('ProductsService', () => {
         name: 'Revista Semana 52 ediciones anual'
       }
     ]
-    jest.spyOn(firestoreService, 'find').mockImplementation(() => result)
+    jest.spyOn(datastoreService, 'find').mockImplementation(() => result)
     expect(await productsService.findAll()).toBe(result)
   })
   it('should findOne', async () => {
@@ -39,7 +39,7 @@ describe('ProductsService', () => {
       company: 'tt8hFhxRTnaPxCpzOiqN',
       name: 'Revista Semana 52 ediciones anual'
     }
-    jest.spyOn(firestoreService, 'findOne').mockImplementation(() => result)
+    jest.spyOn(datastoreService, 'findOne').mockImplementation(() => result)
     expect(await productsService.findOne('bxR2xj7kma6cQUtQBInC')).toBe(result)
   })
 })

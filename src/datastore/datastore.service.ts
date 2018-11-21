@@ -11,7 +11,7 @@ export class DatastoreService {
   private readonly db: any
 
   constructor () {
-    this.db = new Datastore({ projectId: process.env.GOOGLE_PROJECT_ID })
+    this.db = new Datastore({ projectId: 'luka-dev-minka' })
   }
 
   async create (kind: string, data: object, key?: string) {
