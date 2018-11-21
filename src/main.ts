@@ -28,6 +28,6 @@ bootstrap()
   .then(() => {
     console.log('Server is up and running!')
   })
-  .catch((error) => {
+  .catch(error => {
     console.error({ error })
   })

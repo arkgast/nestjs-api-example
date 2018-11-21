@@ -19,23 +19,25 @@ describe('ProductsService', () => {
     expect(firestoreService).toBeDefined()
   })
   it('should findAll', async () => {
-    const result = [{
-      'id': 'bxR2xj7kma6cQUtQBInC',
-      'finalProduct': true,
-      'parentId': 'TiHFD1K1V1B5r6OtJ4g4',
-      'company': 'tt8hFhxRTnaPxCpzOiqN',
-      'name': 'Revista Semana 52 ediciones anual'
-    }]
+    const result = [
+      {
+        id: 'bxR2xj7kma6cQUtQBInC',
+        finalProduct: true,
+        parentId: 'TiHFD1K1V1B5r6OtJ4g4',
+        company: 'tt8hFhxRTnaPxCpzOiqN',
+        name: 'Revista Semana 52 ediciones anual'
+      }
+    ]
     jest.spyOn(firestoreService, 'find').mockImplementation(() => result)
     expect(await productsService.findAll()).toBe(result)
   })
   it('should findOne', async () => {
     const result = {
-      'id': 'bxR2xj7kma6cQUtQBInC',
-      'finalProduct': true,
-      'parentId': 'TiHFD1K1V1B5r6OtJ4g4',
-      'company': 'tt8hFhxRTnaPxCpzOiqN',
-      'name': 'Revista Semana 52 ediciones anual'
+      id: 'bxR2xj7kma6cQUtQBInC',
+      finalProduct: true,
+      parentId: 'TiHFD1K1V1B5r6OtJ4g4',
+      company: 'tt8hFhxRTnaPxCpzOiqN',
+      name: 'Revista Semana 52 ediciones anual'
     }
     jest.spyOn(firestoreService, 'findOne').mockImplementation(() => result)
     expect(await productsService.findOne('bxR2xj7kma6cQUtQBInC')).toBe(result)

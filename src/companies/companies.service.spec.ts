@@ -19,20 +19,24 @@ describe('CompaniesService', () => {
     expect(firestoreService).toBeDefined()
   })
   it('should findAll', async () => {
-    const result = [{
-      id: '4h5hqdcisGMtfaOoKoLY',
-      name: 'Viva',
-      country: 'GbE3SfD7izIYvuGgH16f'
-    }]
+    const result = [
+      {
+        id: '4h5hqdcisGMtfaOoKoLY',
+        name: 'Viva',
+        country: 'GbE3SfD7izIYvuGgH16f'
+      }
+    ]
     jest.spyOn(firestoreService, 'find').mockImplementation(() => result)
     expect(await companiesService.findAll()).toBe(result)
   })
   it('should findOne', async () => {
-    const result = [{
-      id: '4h5hqdcisGMtfaOoKoLY',
-      name: 'Viva',
-      country: 'GbE3SfD7izIYvuGgH16f'
-    }]
+    const result = [
+      {
+        id: '4h5hqdcisGMtfaOoKoLY',
+        name: 'Viva',
+        country: 'GbE3SfD7izIYvuGgH16f'
+      }
+    ]
     jest.spyOn(firestoreService, 'findOne').mockImplementation(() => result)
     expect(await companiesService.findOne('4h5hqdcisGMtfaOoKoLY')).toBe(result)
   })

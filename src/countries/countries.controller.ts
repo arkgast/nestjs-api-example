@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Res, Param, Query, Body, HttpStatus } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  Query,
+  Res
+} from '@nestjs/common'
 import { ApiUseTags } from '@nestjs/swagger'
 
 import { CountriesService } from './countries.service'
@@ -22,7 +33,20 @@ export class CountriesController {
   }
 
   @Post()
-  async create (@Body() createCountryDto: CreateCountryDto) {
-    return this.service.create(createCountryDto)
+  async create (@Res() res, @Body() createCountryDto: CreateCountryDto) {
+    const country = await this.service.create(createCountryDto)
+    res.status(HttpStatus.OK).send(country)
+  }
+
+  @Put(':id')
+  async update (@Res() res, @Body() createCountryDto, @Param('id') id) {
+    const country = await this.service.update(id, createCountryDto)
+    res.status(HttpStatus.OK).send(country)
+  }
+
+  @Delete(':id')
+  async delete (@Res() res, @Param('id') id) {
+    const result = await this.service.delete(id)
+    res.status(HttpStatus.OK).send(result)
   }
 }

@@ -1,4 +1,15 @@
-import { Controller, Get, Res, Param, Query, HttpStatus } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  Query,
+  Res
+} from '@nestjs/common'
 import { ApiUseTags } from '@nestjs/swagger'
 
 import { ProductsService } from './products.service'
@@ -20,5 +31,23 @@ export class ProductsController {
   async findOne (@Param('id') id, @Res() res) {
     let product = await this.service.findOne(id)
     res.status(HttpStatus.OK).send(product)
+  }
+
+  @Post()
+  async create (@Res() res, @Body() createProductDto) {
+    let product = this.service.create(createProductDto)
+    res.status(HttpStatus.OK).send(product)
+  }
+
+  @Put(':id')
+  async update (@Res() res, @Body() createProductDto, @Param() id) {
+    let product = this.service.update(id, createProductDto)
+    res.status(HttpStatus.OK).send(product)
+  }
+
+  @Delete(':id')
+  async delete (@Res() res, @Param('id') id) {
+    let result = this.service.delete(id)
+    res.status(HttpStatus.OK).send(result)
   }
 }

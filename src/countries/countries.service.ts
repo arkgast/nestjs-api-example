@@ -9,7 +9,7 @@ const KIND_NAME = 'Country'
 export class CountriesService {
   constructor (private readonly db: DatastoreService) {}
 
-  async findAll (queryObject?: object): Promise<Country []> {
+  async findAll (queryObject?: object): Promise<Country[]> {
     return this.db.find(KIND_NAME, queryObject)
   }
 
@@ -17,7 +17,15 @@ export class CountriesService {
     return this.db.findOne(KIND_NAME, id)
   }
 
-  async create (kind: any) {
-    return this.db.create(KIND_NAME, kind)
+  async create (entity: any) {
+    return this.db.create(KIND_NAME, entity)
+  }
+
+  async update (id: string, entity: any) {
+    return this.db.update(KIND_NAME, id, entity)
+  }
+
+  async delete (id: string) {
+    return this.db.delete(KIND_NAME, id)
   }
 }

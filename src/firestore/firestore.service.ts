@@ -18,7 +18,7 @@ export class FirestoreService {
     this.db.settings(settings)
   }
 
-  async find (collection: string, filters: Firestore[] = []): Promise<any []> {
+  async find (collection: string, filters: Firestore[] = []): Promise<any[]> {
     const objects = []
     let query = this.db.collection(collection)
 
@@ -37,7 +37,10 @@ export class FirestoreService {
   }
 
   async findOne (collection: string, id: string): Promise<object> {
-    const doc = await this.db.collection(collection).doc(id).get()
+    const doc = await this.db
+      .collection(collection)
+      .doc(id)
+      .get()
     return {
       id: doc.id,
       ...doc.data()
@@ -53,12 +56,18 @@ export class FirestoreService {
   }
 
   async update (collection: string, id: string, document: any) {
-    await this.db.collection(collection).doc(id).update(document)
+    await this.db
+      .collection(collection)
+      .doc(id)
+      .update(document)
     return { id, ...document }
   }
 
   async delete (collection: string, id: string) {
-    await this.db.collection(collection).doc(id).delete()
+    await this.db
+      .collection(collection)
+      .doc(id)
+      .delete()
     return id
   }
 }

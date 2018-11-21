@@ -19,7 +19,10 @@ describe('CountriesService', () => {
     expect(countriesService).toBeDefined()
   })
   it('should findAll', async () => {
-    const result = [{ id: 'BOB', name: 'Bolivia' }, { id: 'COL', name: 'Colombia' }]
+    const result = [
+      { id: 'BOB', name: 'Bolivia' },
+      { id: 'COL', name: 'Colombia' }
+    ]
     jest.spyOn(firestoreService, 'find').mockImplementation(() => result)
     expect(await countriesService.findAll()).toBe(result)
   })

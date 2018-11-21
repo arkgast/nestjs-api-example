@@ -14,7 +14,9 @@ describe('Companies Controller', () => {
     }).compile()
   })
   it('should be defined', () => {
-    const controller: CompaniesController = module.get<CompaniesController>(CompaniesController)
+    const controller: CompaniesController = module.get<CompaniesController>(
+      CompaniesController
+    )
     expect(controller).toBeDefined()
   })
 })

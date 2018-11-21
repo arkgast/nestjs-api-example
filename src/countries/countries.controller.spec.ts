@@ -15,7 +15,9 @@ describe('Countries Controller', () => {
   })
 
   it('should be defined', () => {
-    const controller: CountriesController = module.get<CountriesController>(CountriesController)
+    const controller: CountriesController = module.get<CountriesController>(
+      CountriesController
+    )
     expect(controller).toBeDefined()
   })
 })

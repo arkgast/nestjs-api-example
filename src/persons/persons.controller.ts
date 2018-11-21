@@ -1,9 +1,21 @@
-import { Controller, Get, Put, Post, Delete, Res, Param, Query, HttpStatus, Body } from '@nestjs/common'
-import { AuthGuard } from '@nestjs/passport'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  Query,
+  Res
+} from '@nestjs/common'
+import { ApiUseTags } from '@nestjs/swagger'
 
 import { PersonsService } from './persons.service'
 import { CreateUserDto } from './dto/create-user.dto'
 
+@ApiUseTags('Person')
 @Controller('persons')
 export class PersonsController {
   constructor (private readonly service: PersonsService) {}
@@ -21,17 +33,20 @@ export class PersonsController {
   }
 
   @Post()
-  async create (@Body() createUserDto: CreateUserDto) {
-    return this.service.create(createUserDto)
+  async create (@Res() res, @Body() createUserDto: CreateUserDto) {
+    const user = await this.service.create(createUserDto)
+    res.status(HttpStatus.OK).send(user)
   }
 
   @Put(':id')
-  async update (@Body() createUserDto: CreateUserDto, @Param('id') id: string) {
-    return this.service.update(id, createUserDto)
+  async update (@Res() res, @Body() createUserDto: CreateUserDto, @Param('id') id) {
+    const user = await this.service.update(id, createUserDto)
+    res.status(HttpStatus.OK).send(user)
   }
 
   @Delete(':id')
-  async delete (@Param('id') id: string) {
-    return this.service.delete(id)
+  async delete (@Res() res, @Param('id') id: string) {
+    const result = await this.service.delete(id)
+    res.status(HttpStatus.OK).send(result)
   }
 }
