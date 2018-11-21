@@ -5,7 +5,7 @@ import { DatastoreService } from '../datastore/datastore.service'
 const KIND_NAME = 'Person'
 
 @Injectable()
-export class UsersService {
+export class PersonsService {
   constructor (private readonly db: DatastoreService) {}
 
   async findAll () {

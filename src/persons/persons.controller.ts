@@ -1,12 +1,12 @@
 import { Controller, Get, Put, Post, Delete, Res, Param, HttpStatus, Body } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 
-import { UsersService } from './users.service'
+import { PersonsService } from './persons.service'
 import { CreateUserDto } from './dto/create-user.dto'
 
-@Controller('users')
-export class UsersController {
-  constructor (private readonly service: UsersService) {}
+@Controller('persons')
+export class PersonsController {
+  constructor (private readonly service: PersonsService) {}
 
   @Get()
   async findAll (@Res() res) {
