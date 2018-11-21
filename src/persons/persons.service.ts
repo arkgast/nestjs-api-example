@@ -8,8 +8,8 @@ const KIND_NAME = 'Person'
 export class PersonsService {
   constructor (private readonly db: DatastoreService) {}
 
-  async findAll () {
-    return this.db.find(KIND_NAME)
+  async findAll (queryObject?: object) {
+    return this.db.find(KIND_NAME, queryObject)
   }
 
   async findOne (id: string) {

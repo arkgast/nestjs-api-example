@@ -1,29 +1,19 @@
 import { Injectable } from '@nestjs/common'
 
-import { FirestoreService } from '../firestore/firestore.service'
 import { Product } from './interface/product.interface'
+import { DatastoreService } from '../datastore/datastore.service'
+
+const KIND_NAME = 'Product'
 
 @Injectable()
 export class ProductsService {
-  constructor (private readonly db: FirestoreService) {}
+  constructor (private readonly db: DatastoreService) {}
 
-  async findAll (): Promise<Product []> {
-    return this.db.find('product')
-  }
-
-  async findAllByQuery (query: object): Promise<Product []> {
-    const filters = []
-    for (let key in query) {
-      filters.push({
-        field: key,
-        operator: '==',
-        value: query[key]
-      })
-    }
-    return this.db.find('product', filters)
+  async findAll (queryObject?: object): Promise<Product []> {
+    return this.db.find(KIND_NAME, queryObject)
   }
 
   async findOne (id: string): Promise<object> {
-    return this.db.findOne('product', id)
+    return this.db.findOne(KIND_NAME, id)
   }
 }

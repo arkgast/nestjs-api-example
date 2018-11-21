@@ -27,10 +27,34 @@ export class DatastoreService {
     }
   }
 
-  async find (kind: string) {
+  formatFilters (queryObject: object) {
+    const filters = []
+    for (let key in queryObject) {
+      filters.push({
+        field: key,
+        operator: '==',
+        value: queryObject[key]
+      })
+    }
+    return filters
+  }
+
+  createQuery (kind, queryObject) {
     const query = this.db.createQuery(kind)
+    const filters = this.formatFilters(queryObject)
+
+    filters.forEach(filter => {
+      query.where(filter.field, filter.operator, filter.value)
+    })
+
+    return query
+  }
+
+  async find (kind: string, queryObject?: object) {
+    const query = this.createQuery(kind, queryObject)
     const results = await this.db.runQuery(query)
     const entities = results[0]
+
     return entities.map(entity => {
       const entityKey = entity[this.db.KEY]
       return {

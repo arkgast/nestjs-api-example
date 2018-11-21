@@ -11,13 +11,8 @@ export class CompaniesController {
   constructor (private readonly service: CompaniesService) {}
 
   @Get()
-  async findAll (@Query() query: QueryCountry, @Res() res) {
-    let companies: Company []
-    if (query.country) {
-      companies = await this.service.findAllByCountry(query.country)
-    } else {
-      companies = await this.service.findAll()
-    }
+  async findAll (@Res() res, @Query() query: QueryCountry) {
+    const companies = await this.service.findAll(query)
     res.status(HttpStatus.OK).send(companies)
   }
 

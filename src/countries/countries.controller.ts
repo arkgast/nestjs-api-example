@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Res, Param, Body, HttpStatus } from '@nestjs/common'
+import { Controller, Get, Post, Res, Param, Query, Body, HttpStatus } from '@nestjs/common'
 import { ApiUseTags } from '@nestjs/swagger'
 
 import { CountriesService } from './countries.service'
@@ -10,8 +10,8 @@ export class CountriesController {
   constructor (private readonly service: CountriesService) {}
 
   @Get()
-  async findAll (@Res() res) {
-    const countries = await this.service.findAll()
+  async findAll (@Res() res, @Query() query) {
+    const countries = await this.service.findAll(query)
     res.status(HttpStatus.OK).send(countries)
   }
 

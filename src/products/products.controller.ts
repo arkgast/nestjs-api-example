@@ -12,12 +12,7 @@ export class ProductsController {
 
   @Get()
   async findAll (@Res() res, @Query() query: QueryProduct) {
-    let products: Product[]
-    if (query) {
-      products = await this.service.findAllByQuery(query)
-    } else {
-      products = await this.service.findAll()
-    }
+    const products = await this.service.findAll(query)
     res.status(HttpStatus.OK).send(products)
   }
 

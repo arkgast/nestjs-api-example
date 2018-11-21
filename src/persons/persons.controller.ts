@@ -1,4 +1,4 @@
-import { Controller, Get, Put, Post, Delete, Res, Param, HttpStatus, Body } from '@nestjs/common'
+import { Controller, Get, Put, Post, Delete, Res, Param, Query, HttpStatus, Body } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 
 import { PersonsService } from './persons.service'
@@ -9,8 +9,8 @@ export class PersonsController {
   constructor (private readonly service: PersonsService) {}
 
   @Get()
-  async findAll (@Res() res) {
-    const users = await this.service.findAll()
+  async findAll (@Res() res, @Query() query) {
+    const users = await this.service.findAll(query)
     res.status(HttpStatus.OK).send(users)
   }
 
