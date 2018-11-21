@@ -4,7 +4,6 @@
 
 # Files
 *.log
-README.md
 
 # Critical
 src/firestore/ServiceAccountKey.json
