@@ -32,7 +32,7 @@ export class DatastoreService {
     for (let key in queryObject) {
       filters.push({
         field: key,
-        operator: '==',
+        operator: '=',
         value: queryObject[key]
       })
     }
@@ -44,7 +44,7 @@ export class DatastoreService {
     const filters = this.formatFilters(queryObject)
 
     filters.forEach(filter => {
-      query.where(filter.field, filter.operator, filter.value)
+      query.filter(filter.field, filter.operator, filter.value)
     })
 
     return query
